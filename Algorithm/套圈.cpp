@@ -54,7 +54,7 @@ double solve(Point x[], Point y[], Point z[], int l, int r)
 	merge(z, y, l, m, r);
 	int k = l;
 	for (int i = l; i <= r; i++)
-		if (abs(y[i].x - y[m].x) < d) z[k++] = y[i];
+		if (abs(y[i].x - x[m].x) < d) z[k++] = y[i];
 	for (int i = l; i < k; i++)
 		for (int j = i + 1; j < k && z[j].y - z[i].y < d; j++)
 			d = min(d, dist(z[i], z[j]));
