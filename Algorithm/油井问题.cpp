@@ -4,7 +4,7 @@
 using namespace std;
 typedef long long ll;
 const int INF = 0x3f3f3f3f;
-const int N = 13;
+const int N = 2e6 + 10;
 
 int a[N];
 
