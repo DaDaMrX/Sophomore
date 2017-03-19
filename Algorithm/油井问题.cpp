@@ -39,7 +39,7 @@ int Select3rd(int a[], int p, int r)
 		if (i != t1 && a[i] < a[t2]) t2 = i;
 	int t3 = -1;
 	for (int i = p; i <= r; i++)
-		if (t3 == -1 || (i != t1 && i != t2 && a[i] < a[t3])) t3 = i;
+		if (i != t1 && i != t2 && (t3 == -1 || a[i] < a[t3])) t3 = i;
 	return t3;
 }
 
