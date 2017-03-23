@@ -26,21 +26,19 @@ void add(int u, int v)
 	adj[u] = no++;
 }
 
-int dfn[N], t, fa[N];
-bool vis[N];
+bool s[N];
+int ans;
 void dfs(int u, int f)
 {
-	dfn[t++] = u;
-	fa[u] = f;
-	vis[u] = true;
 	for (int i = adj[u]; i != -1; i = edge[i].next)
 	{
 		Edge &e = edge[i];
-		if (!vis[e.to]) dfs(e.to, u);
+		if (e.to == f) continue;
+		dfs(e.to, u);
 	}
+	if (f != -1 && !s[u] && !s[f]) s[f] = true, ans++;
 }
 
-bool s[N];
 
 int main()
 {
@@ -59,17 +57,9 @@ int main()
 				add(u, v); add(v, u);
 			}
 		}
-		
-		memset(vis, false, sizeof(vis));
-		t = 0;
-		dfs(0, -1);
-
 		memset(s, false, sizeof(s));
-		int ans = 0;
-		for (int i = n - 1; i > 0; i--)
-			if (!s[dfn[i]] && !s[fa[dfn[i]]])
-				s[fa[dfn[i]]] = true, ans++;
-
+		ans = 0;
+		dfs(0, -1);
 		printf("%d\n", ans);
 	}
 	return 0;
